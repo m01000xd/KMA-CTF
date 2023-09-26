@@ -68,13 +68,13 @@ flag_hash = '16ab78b0c0654e663d7e2e22ac0a9b7a'
 flag_encode = '10010111001101100000111110111010001011000111000101010110110001101101001011100101110000111010110101111000101111001111110100000010001111000111011011011110101011111110011000111110111101001001000100011010001101111101'
 
 ## Nửa đầu có độ dài 52 kí tự, nửa sau có độ dài 58 kí tự. Với cách giải hệ pt tìm số nhóm kí tự dài 7 bit và 6 bit ở trên, ta lần lượt
-xác định được:
+## xác định được:
 
 ## Nửa đầu có 4 kí tự dài 7 bit và 4 kí tự dài 6 bit
 ## Nửa sau có 4 kí tự dài 7 bit và 5 kí tự dài 6 bit
 
 ## Ở đây, ta nghĩ đến việc tạo 1 cách xếp bất kì các kí tự 7 bit và 6 bit. Sau đó ta sẽ dùng itertools để tìm tất cả các tổ hợp các cách
-sắp xếp các kí tự 7 bit và 6 bit ở 2 nửa:
+## sắp xếp các kí tự 7 bit và 6 bit ở 2 nửa:
 
 first_part = [7] * 4 + [6] * 4
 second_part = [7] * 4 + [6] * 5
@@ -98,7 +98,7 @@ for i in to_hop1:
             groups.append(chr(int(group,2)))
             index += length
     if len(groups) == 8:
-        mang1.append(groups) ## Do ở trên, nếu có kí tự có bit 0 đầu thì break, mà nửa đầu gồm 4 + 4 = 8 kí tự, nếu có groups đủ 8 kí tự thì chắc chắn cách chia đó hợp lệ vì các bit đầu của mỗi kí tự luôn là bit 1.
+        mang1.append(groups) ## Do ở trên, nếu có kí tự có bit 0 đầu thì break, mà nửa đầu gồm 4 + 4 = 8 kí tự, nếu có groups đủ 8 kí tự ## thì chắc chắn cách chia đó hợp lệ vì các bit đầu của mỗi kí tự luôn là bit 1.
 
 ## Làm tương tự với mảng 2
 
@@ -118,7 +118,8 @@ for i in to_hop2:
 ## Join các kí tự đơn lẻ vửa append vào mảng lại thành 1 xâu
 mang1 = [''.join(i) for i in mang1]        
 mang2 = [''.join(i) for i in mang2]
-## itertools.product() để nối tất cả các xâu trong mang1 lần lượt tương ứng với tất cả các xâu trong mảng 2. Vì @ ở giữa nên ta chèn thêm @ giữa mang1, mang2:
+## itertools.product() để nối tất cả các xâu trong mang1 lần lượt tương ứng với tất cả các xâu trong mảng 2. Vì @ ở giữa nên ta chèn
+## thêm @ giữa mang1, mang2:
 
 combinations = ['KMA{(X8UX6' + ''.join(i) + 'HFF}' for i  in list(itertools.product(mang1,'@', mang2))]
 ## Ta đã được các xâu hoàn chỉnh, giờ ta sẽ đem hash và so với flag_hash để được flag:
